@@ -1,0 +1,26 @@
+name: Test ssh action
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency: ${{ github.workflow }}
+
+jobs:
+  test:
+    name: Test Action
+    runs-on: ubuntu-latest
+    steps:
+      - id: ssh
+        name: Run action
+        uses: invi5H/ssh-action
+        with:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+
+      - name: Config file for debugging
+        run: cat ~/.ssh/config
+
+      - name: Test
+        run: ssh -q ${{ steps.ssh.outputs.SERVER }} 'pwd && exit'
