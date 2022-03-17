@@ -13,7 +13,7 @@ jobs:
     steps:
       - id: ssh
         name: Run action
-        uses: invi5H/ssh-action
+        uses: invi5H/ssh-action@main
         with:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
