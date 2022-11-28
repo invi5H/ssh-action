@@ -33,7 +33,7 @@ runs:
       name: Set server name
       run: |
         NAME=$(echo "${{ inputs.NAME }}" | iconv -t ascii//TRANSLIT | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | tr A-Z a-z)
-        echo "::set-output name=name::$NAME"
+        echo "name=$NAME" >> $GITHUB_OUTPUT
       shell: bash
     - name: Create SSH key
       run: |
