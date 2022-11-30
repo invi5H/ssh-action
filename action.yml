@@ -42,7 +42,7 @@ runs:
         sudo chmod 600 ~/.ssh/${{ steps.setup.outputs.name }}.key
       shell: bash
     - name: Scan the public ssh host keys
-      run: ssh-keyscan -H ${{ inputs.SSH_HOST }} >> ~/.ssh/known_hosts
+      run: ssh-keyscan -p ${{ inputs.SSH_PORT }} -H ${{ inputs.SSH_HOST }} >> ~/.ssh/known_hosts
       shell: bash
     - name: Create SSH config
       run: |
